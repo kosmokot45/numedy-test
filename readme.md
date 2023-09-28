@@ -9,6 +9,7 @@ python -m venv venv
 ```
 2. Запустить сборку контейнера
 ```
+docker-compose build
 docker-compose up -d
 ```
 3. Сервис будет доступен по следующему адресу:
