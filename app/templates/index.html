@@ -1,4 +1,15 @@
-<p> Для просмотра отчетов: </p>
-<a href="/app/reports/">отчеты</a>
-<p> Для просмотра частот: </p>
-<a href="/app/freqs/">частоты</a>
+{% comment %} {% load staticfiles %} {% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main View</title>
+</head>
+<body>
+<div>
+    <h2> Для просмотра отчета: <a href="/app/reports/">отчеты</a></h2>
+    
+    <h2> Для просмотра гистограммы: <a href="/app/freqs/">гистограмма</a></h2>
+    
+</div>
+</body>
+</html>
