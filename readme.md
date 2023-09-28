@@ -1,11 +1,25 @@
 ## Процесс запуска:
 # 
  
+Если запуск производится на линукс, необходимо раскоментировать строчку в параметрах билда docker-compose.
+
+```
+from
+# context: ./ 
+to
+context: ./
+```
+
 
 1. Необходимо установить и активировать виртуальную среду
 ```
 python -m venv venv
-.\venv\Scripts\activate 
+
+# windows
+.\venv\Scripts\activate
+
+# linux
+source venv/bin/activate
 ```
 2. Запустить сборку контейнера
 ```
