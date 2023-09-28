@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "numedy-test"
+version = "0.1.0"
+description = ""
+authors = ["pohofmd <kosmokot45@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+django = "^4.2.5"
+numpy = "^1.26.0"
+pandas = "^2.1.1"
+matplotlib = "^3.8.0"
+gunicorn = "^21.2.0"
+django-environ = "^0.11.2"
+scipy = "^1.11.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

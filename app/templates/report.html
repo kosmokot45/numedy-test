@@ -1,0 +1,7 @@
+<p> Для просмотра отчетов: </p>
+{% for el in data %}
+    <h1> {{ el.stock }} : {{ el.sum }}</h1>
+    {% for item in el.items %}
+        <p> {{ item.item }} : {{ item.balance }} </p>
+    {% endfor %}
+{% endfor %}
