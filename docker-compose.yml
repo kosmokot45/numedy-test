@@ -5,7 +5,8 @@ services:
       # context: ./
       dockerfile: Dockerfile
     command: >
-      sh -c   "python manage.py migrate &&
+      sh -c  "python create_env.py &&
+              python manage.py migrate &&
               python manage.py create_database &&
               gunicorn numedy.wsgi:application -b 0.0.0.0:8000"
     ports: 
