@@ -11,7 +11,7 @@ from .data import brands, models, get_balance
 
 class Command(BaseCommand):
 
-    def handle(self, *args: Any, **options: Any) -> str | None:
+    def handle(self, *args: Any, **options: Any) -> None:
         clear_db()
 
         for el in range(5):
@@ -22,29 +22,26 @@ class Command(BaseCommand):
         for el in range(100):
             create_items()
 
-        # [4, 27, 36, 26, 7] для item
-
         for item in range(1, 101):
             balance = get_balance()
             for stock in range(1, 6):
                 create_inventory(stock, item, balance)
 
 
-def create_worker(name_part: int):
+def create_worker(name_part: int) -> None:
     Worker.objects.create(
         name=f"Ivan_{name_part}",
     )
-    return Worker
 
 
-def create_warehouse(name_part: int, worker_id: int):
+def create_warehouse(name_part: int, worker_id: int) -> None:
     Warehouse.objects.create(
         name=f"stock_{name_part}",
         worker=Worker.objects.get(id=worker_id),
     )
 
 
-def create_items():
+def create_items() -> None:
     Item.objects.create(
         inv_num=random.randint(1, 1000),
         brand=secrets.choice(brands),
@@ -54,7 +51,7 @@ def create_items():
     )
 
 
-def create_inventory(stock: int, item: int, balance: list[int]):
+def create_inventory(stock: int, item: int, balance: list[int]) -> None:
     Inventory.objects.create(
         stock=Warehouse.objects.get(id=stock),
         item=Item.objects.get(id=item),

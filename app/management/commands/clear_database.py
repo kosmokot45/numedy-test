@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from app.models import Worker, Warehouse, Item, Inventory
 
 
-def clear_db():
+def clear_db() -> None:
     Inventory.objects.all().delete()
     Item.objects.all().delete()
     Warehouse.objects.all().delete()
@@ -12,5 +12,5 @@ def clear_db():
 
 class Command(BaseCommand):
 
-    def handle(self, *args: Any, **options: Any) -> str | None:
+    def handle(self, *args: Any, **options: Any) -> None:
         clear_db()

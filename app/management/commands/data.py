@@ -6,11 +6,10 @@ import numpy as np
 brands = ["Tefal", "Zagovor", "LG", "Dell", "Nokia", "Yandex"]
 
 models = [
-    f"model_{secrets.randbelow(10)}_{secrets.choice(string.ascii_lowercase)}"
-    for model in range(100)]
+    f"model_{secrets.randbelow(10)}_{secrets.choice(string.ascii_lowercase)}" for model in range(100)]
 
 
-def get_balance():
+def get_balance() -> list[int]:
     items = np.random.default_rng().normal(loc=2.5, scale=1, size=100)
     numbers_dict = defaultdict(int)
     for item in items:
