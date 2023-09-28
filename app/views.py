@@ -1,5 +1,6 @@
 import base64
 from io import BytesIO
+from typing import Any
 from django.shortcuts import render
 from django.db.models import Sum
 from matplotlib import pyplot as plt
@@ -7,15 +8,14 @@ import numpy as np
 
 from .models import Inventory, Warehouse, Item
 
-# Create your views here.
-
 
 def index(request):
     return render(request, "index.html")
 
 
 def reports(request):
-    report = []
+    # collect report
+    report: list[dict[str, Any]] = []
     for stock in Warehouse.objects.all():
         data = {"stock": stock.name,
                 "sum": Inventory.objects.filter(
@@ -31,32 +31,25 @@ def reports(request):
 
 
 def freqs(request):
-    lst = []
+    # collect balance data
+    balance_list: list[int] = []
     for item in Item.objects.all():
         data = list(Inventory.objects.filter(
             item=item).values("balance"))
 
-        for bal in data:
-            lst.append(bal['balance'])
+        for balance in data:
+            balance_list.append(balance['balance'])
 
-    print(lst)
-
+    # create hist
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.hist(lst, edgecolor='black',
-            weights=np.ones_like(lst) / len(lst))
-    # plt.show()
+    ax.hist(balance_list, edgecolor='black',
+            weights=np.ones_like(balance_list) / len(balance_list))
 
+    # convert image to string
     buf = BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
     string = base64.b64encode(buf.read())
 
-    graph = string.decode('utf-8')
-
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # ax.hist(data, edgecolor='black', weights=np.ones_like(data) / len(data))
-    # plt.show()
-
-    return render(request, "frequency.html", {'graph': graph})
+    return render(request, "frequency.html", {'graph': string.decode('utf-8')})
