@@ -1,7 +1,33 @@
-<p> Для просмотра отчетов: </p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main View</title>
+    <style>
+        .div_report {
+            float: left; 
+            line-height: 50px; 
+            font-size: 20px; 
+            background: dodgerblue; 
+            color: white; 
+            margin-top: 10px; 
+            width: 150px; 
+            margin-right: 10px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Отчет по остаткам</h1>
+<div>        
 {% for el in data %}
-    <h1> {{ el.stock }} : {{ el.sum }}</h1>
+    <div class="div_report">
+        <div>
+            {{ el.stock }} : {{ el.sum }}
+        </div>
     {% for item in el.items %}
-        <p> {{ item.item }} : {{ item.balance }} </p>
+        <em>item_{{ item.item }} : {{ item.balance }} pcs</em>
     {% endfor %}
+    </div>
 {% endfor %}
+</div>
+</body>
