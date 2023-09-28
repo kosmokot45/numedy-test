@@ -13,7 +13,7 @@ docker-compose up -d
 ```
 3. Сервис будет доступен по следующему адресу:
 ```
-localhost:8000
+localhost:8000/app
 ```
 
 
